@@ -29,7 +29,7 @@ int rabinKarpSearch(string &str,string &pat){
 }
 
 int main(){
-    string str ="abbbbbaabbaabaabbbaaaaabbabbbabbbbbaababaabbaabbbbbababaababbbbaaabbbbabaabaaaabbbbabbbaabbbaabbaaabaabaaaaaaaa";
-    string pattern ="baba";
+    string str = "abaababaccabacabac";
+    string pattern ="abcb";
     rabinKarpSearch(str,pattern);
 }
