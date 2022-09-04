@@ -78,7 +78,7 @@ void deleteKthNode(int k,node* &head){
     while(ptr->next!=head){
         if(count == k-1){
             node* temp = ptr->next;
-            ptr->next = ptr->next->next;
+            ptr->next  = ptr->next->next;
             delete temp;
             return;
         }
