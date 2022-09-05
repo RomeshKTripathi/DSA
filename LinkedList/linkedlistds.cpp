@@ -177,6 +177,11 @@ void reverseList(node *&head){
     }
     head->next = ptr;
 }
+//reverse list recursive
+void reverseListRecursive(node *&head){
+    
+}
+
 
 int main()
 {
