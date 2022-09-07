@@ -182,6 +182,30 @@ void reverseListRecursive(node *&head){
     
 }
 
+//evenOdd linked list
+void evenOddList(node* &head){
+    //assume 1st even and 2nd odd and so on.
+    if(head == nullptr or head->next == nullptr) return;
+    node *even_ptr = head;
+    node* odd_ptr = head;
+    node* ptr,*even,*odd;
+    even = even_ptr;
+    odd = odd_ptr;
+    ptr = head;
+
+    while(ptr->next){
+        even->next = ptr;
+        even = even->next;
+        ptr = ptr->next;
+        odd->next = ptr;
+        odd = odd->next;
+        if(ptr->next == nullptr)break;
+        ptr = ptr->next;
+    }   
+    even_ptr = odd_ptr;
+    head = even_ptr;
+}
+
 
 int main()
 {
@@ -200,5 +224,8 @@ int main()
     middleOfLinkedList(head);
     cout<<"\nReverse List\n";
     reverseList(head);
+    printList(head);
+    cout<<"\nevenOdd list : ";
+    evenOddList(head);
     printList(head);
 }
