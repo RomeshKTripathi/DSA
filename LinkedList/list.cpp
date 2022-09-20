@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 // node definition.
@@ -30,11 +31,20 @@ public:
     {
         head = new node(data);
     }
-
+    list(vector<int> vec)
+    {
+        head = new node(vec[0]);
+        node* ptr = head;
+        for (int i = 1; i < vec.size(); i++)
+            {
+                ptr->next = new node(vec[i]);
+                ptr = ptr->next;
+            }
+    }
     void printList()
     {
         node *ptr = head;
-        cout<<endl;
+        cout << endl;
         while (ptr)
         {
             cout << ptr->val << " ";
@@ -77,7 +87,7 @@ public:
         {
             if (count == index)
                 return ptr->val;
-            ptr = ptr ->next;
+            ptr = ptr->next;
             count++;
         }
         return -1;
@@ -93,32 +103,38 @@ public:
         node *curr = head->next;
         node *prev = head;
         int count = 0;
-        while(curr){
+        while (curr)
+        {
             count++;
-            if(count  == index){
-                prev->next = new node(data,curr);
+            if (count == index)
+            {
+                prev->next = new node(data, curr);
                 return;
             }
             count++;
             prev = curr;
             curr = curr->next;
-        } 
+        }
     }
-    void deleteAtIndex(int index){
-        if(head == nullptr)return;
+    void deleteAtIndex(int index)
+    {
+        if (head == nullptr)
+            return;
         int count = 0;
         node *temp = nullptr;
         node *prev = head;
         node *curr = head->next;
-        if(index == 0)
-            {
-                head = curr;
-                return;
-            }
+        if (index == 0)
+        {
+            head = curr;
+            return;
+        }
 
-        while(curr){
+        while (curr)
+        {
             count++;
-            if(count == index){
+            if (count == index)
+            {
                 prev->next = curr->next;
                 delete curr;
                 return;
@@ -126,7 +142,6 @@ public:
             prev = curr;
             curr = curr->next;
         }
-
     }
 
     // Reverse the list;
@@ -147,20 +162,38 @@ public:
         }
         head = rev;
     }
+        
+    void rev(node* prev = nullptr){
+        if(head == nullptr){
+            head = prev;
+            return;
+        }
+
+        node* temp = head->next;
+        head->next = prev;
+        prev = head;
+        head = temp;
+        rev(prev);
+    }
+    node* rev1(node* head){
+        if(head == nullptr or head->next == nullptr)return head;
+        node* rest_head = rev1(head->next);
+        node* rest_tail= head->next;
+        rest_tail->next = head;
+        head->next = nullptr;
+        return rest_head;
+        
+    }
+    void rev2(){
+        head = rev1(head);
+    }
+    
 };
 
 int main()
 {
-    list *obj = new list();
-    obj->addAtHead(1);
-    obj->addAtTail(3);
-    obj->addAtIndex(1,2);
+    vector<int> v = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    list *obj = new list(v);
+    obj->rev2();
     obj->printList();
-    cout<<endl<<obj->get(1);
-    obj->printList();
-    obj->deleteAtIndex(1);
-    obj->printList();
-    cout<<endl<<obj->get(1)<<endl;
-    obj->printList();
-
 }
