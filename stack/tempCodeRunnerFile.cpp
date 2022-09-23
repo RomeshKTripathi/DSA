@@ -1,0 +1,1 @@
+(s.size())?histogram.size():(histogram.size()-s.top()-1)
