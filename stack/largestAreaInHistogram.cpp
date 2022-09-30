@@ -1,4 +1,4 @@
-// Naive approach to solve largest Area in Histogram problem
+
 // Complexity of the solution is O(n^2);
 
 #include <iostream>
