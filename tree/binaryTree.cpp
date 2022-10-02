@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 using namespace std;
 
 typedef struct TreeNode
@@ -67,6 +68,34 @@ void postorderTraversal(TreeNode *root){
 }
 
 
+// Level order Traversal
+// 1 -> push in queue
+// 2 3 -> child of 1 i.e. in queue already
+// 4 5 6 7 -> children of 2 and 3
+
+// void levelorderTraversal(TreeNode *root){
+//     queue<TreeNode*> que;
+//     que.push(root);
+//     que.push(nullptr);
+//     while(!que.empty()){ // if queue is non empty than we can traverse subtrees of those nodes, i.e. in queue
+//         TreeNode *temp = que.front();
+//         que.pop();
+//         cout << temp->data;
+//         if(temp->left)
+//             que.push(root->left);
+//         if(temp->right)
+//             que.push(root->right);
+//         if(que.front() == nullptr){
+//             que.pop();
+//             cout << endl;
+//             que.push(nullptr);
+//         }
+//     }
+
+// }
+
+
+
 int main()
 {
     TreeNode *root = new TreeNode(1);
@@ -74,6 +103,7 @@ int main()
     preorderTraverse(root);
     cout << "\nPostorder Traversla\n";
     postorderTraversal(root);
+    // levelorderTraversal(root);
     // 2 3 4 5 -1 -1 -1 -1 6 7 -1 -1 -1 -1
 }
 /*
