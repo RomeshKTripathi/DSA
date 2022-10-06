@@ -1,22 +1,19 @@
-#include<iostream>
-#include<vector>
-#include<unordered_map>
-#include<stack>
+#include <iostream>
 using namespace std;
 
-long long count_pairs(int N, vector<int> A, int X){
-    unordered_map<int, int> mp;
+int func(string &str){
     int count = 0;
-    for(int i = 0;i<A.size();i++){
-        if(mp.find(A[i]) == mp.end())
-            mp[A[i]] = i;
-        else{
-            if(mp[A[i]] < i and ((mp[A[i]]+1)*(i+1))%X == 0)
-                count++;           
-        }
+    int letters = 0;
+    for(int i = 0;i<str.size();i++){
+        if(str[i] >= '0' and str[i]<='9') 
+        count += str[i]-'0';
+        if((str[i] >= 'a' and str[i]<='z')  or (str[i] <='A' and str[i] >= 'Z') )
+            letters++;
     }
+    return count/letters;
 }
 
 int main(){
-    cout<<count_pairs(3,{2,2,2},2);
+    string str = "Hello6 9World 2,Nic8e D7ay";
+    cout << func(str);
 }
