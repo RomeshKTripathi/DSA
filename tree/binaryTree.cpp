@@ -180,6 +180,41 @@ bool isBalanced(TreeNode *root){
 
 }
 
+
+int checkBalanceFactor(TreeNode *root){
+    if(root == nullptr) return 0;
+
+    int lh = checkBalanceFactor(root->left);
+    int rh = checkBalanceFactor(root->right);
+
+    if(lh == -1 or rh == -1 or abs(lh-rh) > 1)return -1;
+    return max(lh, rh)+1;    
+}
+
+
+int widthOfTree(TreeNode *root){
+    if(root == nullptr) return 0;
+    queue<TreeNode *> q;
+    int diameter = 0;
+    q.push(root);
+    while(!q.empty()){
+        int size = q.size();
+        diameter = max(size, diameter);
+        for(int i = 0;i<size;i++){
+            TreeNode *curr = q.front();
+            q.pop();
+            if(curr->left)
+                q.push(curr->left);
+            if(curr->right)
+                q.push(curr->right);
+             
+        }
+    }
+    return diameter;
+}
+
+
+
 int main()
 {
     TreeNode *root = new TreeNode(20);
@@ -195,9 +230,11 @@ int main()
     // cout << endl << "Maximum of the tree :\n" << getMax(root);
 
     cout << "Children sum property \n" << childSumProperty(root) << endl;
-    cout << "Is Balanced Tree : " << ((isBalanced(root))?"Yes":"No");
+    cout << "Is Balanced Tree : " << ((checkBalanceFactor(root)!= -1)?"Yes":"No") << endl;
+    cout << "Width of Tree : " << widthOfTree(root) << endl;
     // 2 4 -1 -1 5 -1 -1 3 6 -1 -1 7 -1 -1
 }
+
 /*
         1
     2       3
