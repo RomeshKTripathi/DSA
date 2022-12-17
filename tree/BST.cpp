@@ -78,12 +78,48 @@ TreeNode* arrayToBST(TreeNode *&root, vector<int> &vec, int start, int end){
     root->right = arrayToBST(root->right, vec, mid+1, end);
     return root;
 }
+TreeNode* floor(TreeNode *root, int key){
+    if(!root) return root;
+
+    TreeNode *ptr = root;
+    TreeNode *ans = nullptr;
+    while(ptr){
+        if(ptr->data == key) return ptr;
+        else if(ptr->data > key) ptr = ptr->left;
+        else {
+            if(ans == nullptr){
+                ans = ptr;
+            }else {
+                if(ans->data < ptr->data) ans = ptr;
+            }
+            ptr = ptr->right;
+        }
+    }
+    return ans;
+}
+TreeNode* ceil(TreeNode* root, int key){
+    if(!root) return nullptr;
+    TreeNode* ptr = root;
+    TreeNode *ans = nullptr;
+    while(ptr){
+        if(ptr->data == key) return ptr;
+        else if(ptr->data < key) ptr = ptr->right;
+        else {
+            ans = ptr;
+            ptr = ptr ->left;
+        }
+    }
+    return ans;
+}
 
 int main(){
     TreeNode *root = nullptr;
-    vector<int> data = {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20};
-    arrayToBST(root, data, 0, 19);
+    vector<int> data = {1,2,3,4,5,6,8,9,10,11,12,13,14,15,16,17,18,19,20};
+    arrayToBST(root, data, 0, 18);
     preorder(root);
     cout <<"\nLevelORder"<<endl;
     levelorder(root);
+    TreeNode *c = floor(root, 7);
+    int res = (c == nullptr)? -9 : c->data;
+    cout << endl << "Ceil of 6 is : " << res;
 }
