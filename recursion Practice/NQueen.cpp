@@ -55,7 +55,7 @@ int main(){
     vector<string> board;
     Solution *obj = new Solution();
 
-    board = obj->NQueen(4);
+    board = obj->NQueen(5);
     for(auto row : board)
         {
             for(auto col : row){

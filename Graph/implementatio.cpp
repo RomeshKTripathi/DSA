@@ -50,7 +50,7 @@ int main(){
     addEdge(adj, 2, 4);
     addEdge(adj, 3, 5);
     addEdge(adj, 4, 5);
-    dfs(adj, 0 , visited);    
+    bfs(adj, 6, 0);    
     cout << "Work Done !";
     return 0;
 }
