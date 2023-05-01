@@ -1,0 +1,1 @@
+(obj.hasCycle(adj, 6) == 1)?"Has Cycly":"No cycle"

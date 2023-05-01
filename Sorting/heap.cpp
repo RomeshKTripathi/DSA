@@ -8,8 +8,11 @@ void build_min_heap(vector<int> &heap, int key){
 
     // Heapify the heap
     int i = heap.size()-1;
-    while(i > 0 && heap[i] < heap[(i-1)/2]){
+    // check if it is less than its parent
+    while(i > 1 && heap[i] < heap[(i-1)/2]){
+        // if less then parent than swap with parent 
         swap(heap[i], heap[(i-1)/2]);
+        // move pointer to its sparent .
         i = (i-1)/2;
     }
 }
@@ -84,14 +87,38 @@ void heap_level_order(vector<int> &heap){
         cout << heap[i] << "  "; 
     }
 }
-int main(){
-    vector<int> vec;
-    int key = 1;
-    while(true){
-        cin >> key;
-        if(key == -1) break;
-        build_min_heap(vec, key);
+
+void buildHeapFromArray(vector<int> &heap){
+    // heap.push_back(0);
+    // // shift all elements from 0 index to 1 index to right
+    // int i = heap.size()-1;
+    // while(i > 0){
+    //     heap[i] = heap[i-1];
+    //     i--;
+    // }
+
+    // now heapify all elements from 1 to n;
+    int n = heap.size()-1;
+    for(int i = 0; i <= n; i++){
+        int j = i;
+        while(j > 0 && heap[j] < heap[(j-1)/2]){
+            swap(heap[j], heap[(j-1)/2]);
+            // move pointer to its sparent .
+            j = (j-1)/2;
+        }
     }
+
+
+}
+int main(){
+    vector<int> vec = {9,8,7,6,5,4,3,2,1};
+    int key = 1;
+    buildHeapFromArray(vec);
+    // while(true){
+    //     cin >> key;
+    //     if(key == -1) break;
+    //     build_min_heap(vec, key);
+    // }
     print_heap(vec);
     cout<< endl;
     heap_level_order(vec);

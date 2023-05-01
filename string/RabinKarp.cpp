@@ -1,35 +1,23 @@
 #include<iostream>
 using namespace std;
+
+
 int pow(int x,int y){
-    int res = 1;
-    while(y--){
-        res *=x;
-        
-    }
-    return res;
+    if(y == 0) return 1;
+    int val = pow(x, y/2);
+    if(y % 2 == 1) return val * val * x;
+    return val * val;
 }
+
+
+
 int rabinKarpSearch(string &str,string &pat){
-    int pat_hash = 0;//pattern hash 
-    int w_hash = 0;//firsh window hash
-    int d = 5;
-    for(int i = 0;i<pat.size();i++){
-        pat_hash += pat[i] * pow(d,pat.size()-i-1);
-        w_hash += str[i] * pow(d,pat.size()-i-1);
-    }
-    for(int i = 0;i<=str.size()-pat.size();i++){
-        if(pat_hash == w_hash){
-            bool match = true;
-            for(int j = i;j<i+pat.size();j++){
-                if(pat[j-i] != str[j]) match = false;
-            } 
-            if(match) cout<<i<<" ";
-        }
-        w_hash = d * (w_hash - str[i]*pow(d,pat.size()-1))+str[i+pat.size()];
-    }
+    return -1;
 }
 
 int main(){
     string str = "abaababaccabacabac";
     string pattern ="abcb";
-    rabinKarpSearch(str,pattern);
+    // cout << rabinKarpSearch(str,pattern);
+    // cout << pow(2, 3);
 }

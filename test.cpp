@@ -1,5 +1,8 @@
+
 #include <iostream>
 using namespace std;
+
+
 
 int func(string &str){
     int count = 0;
